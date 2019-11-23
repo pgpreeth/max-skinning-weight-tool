@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>286</width>
+    <width>340</width>
     <height>749</height>
    </rect>
   </property>
@@ -15,6 +15,21 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_5">
+    <property name="spacing">
+     <number>2</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>2</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>2</number>
+    </property>
     <item>
      <widget class="QGroupBox" name="vertext_selection_grp_box">
       <property name="title">
@@ -27,7 +42,7 @@
           <widget class="QPushButton" name="grow_but">
            <property name="maximumSize">
             <size>
-             <width>55</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -40,7 +55,7 @@
           <widget class="QPushButton" name="shrink_but">
            <property name="maximumSize">
             <size>
-             <width>55</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -53,7 +68,7 @@
           <widget class="QPushButton" name="loop_but">
            <property name="maximumSize">
             <size>
-             <width>55</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -66,7 +81,7 @@
           <widget class="QPushButton" name="ring_but">
            <property name="maximumSize">
             <size>
-             <width>55</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -197,6 +212,12 @@
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
           <widget class="QPushButton" name="set_weight_but">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Set Weight</string>
            </property>
@@ -237,6 +258,12 @@
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
           <widget class="QPushButton" name="set_scale_weight_but">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Scale Weight</string>
            </property>
@@ -419,7 +446,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>286</width>
+     <width>340</width>
      <height>21</height>
     </rect>
    </property>

@@ -7,6 +7,7 @@ except:
 import maya.OpenMayaUI as omui
 import pymel.core as pm
 
+
 def load_ui_file(ui_file_path, parent=None):
     """
     Simple UI loader function
@@ -21,9 +22,9 @@ def load_ui_file(ui_file_path, parent=None):
 
 
 def maya_workspace_docker(Widget, window_title):
-	"""
-	qt maya docker
-	"""
+    """
+    qt maya docker
+    """
 
     label = getattr(Widget, "label", window_title)
     try:
@@ -35,7 +36,8 @@ def maya_workspace_docker(Widget, window_title):
     workspace_pointer = omui.MQtUtil.findControl(workspace_control)
     dock_widget = wrapInstance(long(workspace_pointer), QtWidgets.QWidget)
     dock_widget.setAttribute(QtCore.Qt.WA_DeleteOnClose)
-    dock_widget.destroyed.connect(exit)
+    # dock_widget.destroyed.connect(close)
     child = Widget(dock_widget)
     dock_widget.layout().addWidget(child)
     pm.evalDeferred(lambda *args: pm.workspaceControl(workspace_control,edit=True,restore=True))
+
