@@ -52,6 +52,7 @@ class MaxSkinningWeightTool(QWidget):
         self.tool_ui.paste_but.clicked.connect(self.paste_vertex_skin_weight)
         self.tool_ui.weight_hammer_but.clicked.connect(self.weight_hammer)
         self.tool_ui.skin_transfer_but.clicked.connect(self.skin_transfer_func)
+        self.tool_ui.prune_but.clicked.connect(self.prune_weights)
 
         self.tool_ui.set_weight_but.clicked.connect(self.set_weight)
         self.tool_ui.add_weight_but.clicked.connect(self.add_weight)
@@ -327,6 +328,19 @@ class MaxSkinningWeightTool(QWidget):
             logging.warning(
                 'Please select the valid skin Source and then the target to transfer the skin')
 
+
+    def prune_weights(self):
+        """
+        prune the weights by assigned value on the selected mesh
+        """
+
+        get_prune_value = self.tool_ui.prune_val_spin_box.value()
+        selected_object = pm.ls(sl=True, fl=True)
+        if selected_object:
+            mesh_object = pm.ls(selected_object[0], o=True)
+            skin_cluster = utilities.find_skin_cluster(mesh_object[0])
+            pm.skinPercent( skin_cluster, mesh_object[0], pruneWeights=get_prune_value )
+            self.update_joint_list_influence()
 
 def show():
     """

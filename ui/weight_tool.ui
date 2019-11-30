@@ -601,13 +601,13 @@
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="skin_transfer_grp_box_2">
+     <widget class="QGroupBox" name="prune_grp_box">
       <property name="title">
        <string>Prune Weight</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
-        <layout class="QVBoxLayout" name="skin_transfer_layout_2">
+        <layout class="QVBoxLayout" name="prune_layout_2">
          <item>
           <widget class="QLabel" name="skin_transfer_lbl_2">
            <property name="text">
@@ -616,9 +616,9 @@
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout">
+          <layout class="QHBoxLayout" name="prune_layout">
            <item>
-            <widget class="QPushButton" name="skin_transfer_but_2">
+            <widget class="QPushButton" name="prune_but">
              <property name="styleSheet">
               <string notr="true">QPushButton {
 	color: rgb(0, 0, 0);
@@ -632,7 +632,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox">
+            <widget class="QDoubleSpinBox" name="prune_val_spin_box">
              <property name="decimals">
               <number>3</number>
              </property>
