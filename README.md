@@ -1,2 +1,49 @@
-# max-skinning-weight-tool
-Skinning tool for Maya similar to the weight tool in 3dsmax
+# Max Skinning Weight Tool
+
+
+This is a python tool similar to the weight tool in 3DSMAX. A model can be skinned using this script without using the maya paint tool. This script provides tools to select vertices and assign them weights. You can also copy, paste, and blend weights between vertices. Each vertex you select displays the objects contributing to its weighting in the dialog list.
+
+Important: The controls on this dialog adjust vertex weighting with respect to the active bone; that is, the object highlighted in the Skin Joint list . When you select a vertex and then change its weighting, if the active bone does not already influence the vertex, the bone is added to the list of bones influencing the vertex. You can ensure that bone assignments don't change by highlighting the bone in the Weight Tool dialog list after selecting the vertex and before changing weighting. Also, the total weighting for all bones influencing a vertex is always 1.0, so if multiple bones influence a vertex and you change the weight value for one bone, the weight values for the others change as well.
+
+Your Tool will be activated only in vertex mode and on a valid skinned mesh..
+
+# Features!
+
+  - Adjust weights to vertices using preset buttons on the UI like 3dsmax
+  - Transfer skin from one valid skinned object to another.
+  - This tool has been refactored to python from the original mel tool
+
+### Installation
+
+The Skinning Tool has been tested for Maya 2016 and above
+
+```sh
+# Copy the below script into your maya shelf through the script editor
+# Make sure to replace the correct path into the 'path' variable
+
+import sys
+path = 'PATH_TO_TOOL/max-skinning-weight-tool/' #eg 'd:/max-skinning-weight-tool/'
+sys.path.append(path)
+import weight_tool as wt
+wt.show()
+```
+
+### History
+
+This tool was originally developed by me way back in the late 2000 using MEL scripts and published on creativecrash (highend3d)
+
+| Tool | Link |
+| ------ | ------ |
+| MAX Skinning Weight Tool for maYa 1.1.0 | https://www.highend3d.com/maya/script/max-skinning-weight-tool-for-maya |
+
+### Todos
+
+ - Add Load and Save skin feature.
+
+License
+----
+
+MIT
+
+
+**Free Tool, Enjoy!**
