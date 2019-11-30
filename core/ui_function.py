@@ -27,18 +27,18 @@ def maya_workspace_docker(qt_widget, window_title):
     """
 
     label = getattr(qt_widget, "label", window_title)
-    print label
     try:
         pm.deleteUI(window_title)
     except RuntimeError:
         pass
 
-    workspace_control = pm.workspaceControl(window_title, tabToControl=["AttributeEditor", -1], label=label)
+    workspace_control = pm.workspaceControl(
+        window_title, tabToControl=["AttributeEditor", -1], label=label)
     workspace_pointer = omui.MQtUtil.findControl(workspace_control)
-    dock_widget = wrapInstance(long(workspace_pointer), QtWidgets.QWidget)
-    dock_widget.setAttribute(QtCore.Qt.WA_DeleteOnClose)
-    # dock_widget.destroyed.connect(close)
-    child = qt_widget(dock_widget)
-    dock_widget.layout().addWidget(child)
-    pm.evalDeferred(lambda *args: pm.workspaceControl(workspace_control,edit=True,restore=True))
-
+    wrap_widget = wrapInstance(long(workspace_pointer), QtWidgets.QWidget)
+    wrap_widget.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+    # wrap_widget.destroyed.connect(close)
+    child = qt_widget(wrap_widget)
+    wrap_widget.layout().addWidget(child)
+    pm.evalDeferred(
+        lambda *args: pm.workspaceControl(workspace_control, edit=True, restore=True))

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>340</width>
-    <height>749</height>
+    <width>358</width>
+    <height>885</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,21 +15,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_5">
-    <property name="spacing">
-     <number>2</number>
-    </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>2</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>2</number>
-    </property>
     <item>
      <widget class="QGroupBox" name="vertext_selection_grp_box">
       <property name="title">
@@ -46,6 +31,13 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(176, 176, 176);
+}
+</string>
+           </property>
            <property name="text">
             <string>Grow</string>
            </property>
@@ -58,6 +50,13 @@
              <width>16777215</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(176, 176, 176);
+}
+</string>
            </property>
            <property name="text">
             <string>Shrink</string>
@@ -72,6 +71,13 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(176, 176, 176);
+}
+</string>
+           </property>
            <property name="text">
             <string>Loop</string>
            </property>
@@ -84,6 +90,13 @@
              <width>16777215</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(176, 176, 176);
+}
+</string>
            </property>
            <property name="text">
             <string>Ring</string>
@@ -108,11 +121,24 @@
          </property>
          <item>
           <widget class="QPushButton" name="preset_0_but">
+           <property name="minimumSize">
+            <size>
+             <width>35</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
+             <width>16777215</width>
              <height>35</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background: rgb(170, 255, 127) ;
+	color: rgb(0, 0, 0);
+}
+</string>
            </property>
            <property name="text">
             <string>0</string>
@@ -121,11 +147,24 @@
          </item>
          <item>
           <widget class="QPushButton" name="preset_0_1_but">
+           <property name="minimumSize">
+            <size>
+             <width>35</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>30</height>
+             <width>1999999</width>
+             <height>35</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background: rgb(170, 255, 127) ;
+	color: rgb(0, 0, 0);
+}
+</string>
            </property>
            <property name="text">
             <string>0.1</string>
@@ -134,11 +173,24 @@
          </item>
          <item>
           <widget class="QPushButton" name="preset_0_25_but">
+           <property name="minimumSize">
+            <size>
+             <width>35</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>30</height>
+             <width>1999999</width>
+             <height>35</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background: rgb(170, 255, 127) ;
+	color: rgb(0, 0, 0);
+}
+</string>
            </property>
            <property name="text">
             <string>0.25</string>
@@ -147,11 +199,24 @@
          </item>
          <item>
           <widget class="QPushButton" name="preset_0_5_but">
+           <property name="minimumSize">
+            <size>
+             <width>35</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>30</height>
+             <width>1999999</width>
+             <height>35</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background: rgb(170, 255, 127) ;
+	color: rgb(0, 0, 0);
+}
+</string>
            </property>
            <property name="text">
             <string>0.5</string>
@@ -160,11 +225,24 @@
          </item>
          <item>
           <widget class="QPushButton" name="preset_0_75_but">
+           <property name="minimumSize">
+            <size>
+             <width>35</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>30</height>
+             <width>1999999</width>
+             <height>35</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background: rgb(170, 255, 127) ;
+	color: rgb(0, 0, 0);
+}
+</string>
            </property>
            <property name="text">
             <string>0.75</string>
@@ -173,11 +251,24 @@
          </item>
          <item>
           <widget class="QPushButton" name="preset_0_9_but">
+           <property name="minimumSize">
+            <size>
+             <width>35</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>30</height>
+             <width>1999999</width>
+             <height>35</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background: rgb(170, 255, 127) ;
+	color: rgb(0, 0, 0);
+}
+</string>
            </property>
            <property name="text">
             <string>0.9</string>
@@ -186,11 +277,24 @@
          </item>
          <item>
           <widget class="QPushButton" name="preset_1_0_but">
+           <property name="minimumSize">
+            <size>
+             <width>35</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>30</width>
-             <height>30</height>
+             <width>1999999</width>
+             <height>35</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background: rgb(170, 255, 127) ;
+	color: rgb(0, 0, 0);
+}
+</string>
            </property>
            <property name="text">
             <string>1.0</string>
@@ -217,6 +321,13 @@
              <width>120</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 127);
+}
+</string>
            </property>
            <property name="text">
             <string>Set Weight</string>
@@ -247,6 +358,13 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(226, 189, 0);
+}
+</string>
+           </property>
            <property name="text">
             <string>+</string>
            </property>
@@ -259,6 +377,13 @@
              <width>25</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 127);
+}
+</string>
            </property>
            <property name="text">
             <string>-</string>
@@ -276,6 +401,13 @@
              <width>120</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 127);
+}
+</string>
            </property>
            <property name="text">
             <string>Scale Weight</string>
@@ -306,6 +438,13 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(226, 189, 0);
+}
+</string>
+           </property>
            <property name="text">
             <string>+</string>
            </property>
@@ -318,6 +457,13 @@
              <width>25</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 127);
+}
+</string>
            </property>
            <property name="text">
             <string>-</string>
@@ -339,11 +485,25 @@
         <layout class="QHBoxLayout" name="value_tranfer_layout">
          <item>
           <widget class="QPushButton" name="copy_but">
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>90</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(170, 255, 255);
+	alternate-background-color: rgb(85, 170, 255);
+}
+</string>
            </property>
            <property name="text">
             <string>Copy</string>
@@ -354,15 +514,23 @@
           <widget class="QPushButton" name="paste_but">
            <property name="minimumSize">
             <size>
-             <width>0</width>
+             <width>50</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>90</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(170, 255, 255);
+	alternate-background-color: rgb(85, 170, 255);
+}
+</string>
            </property>
            <property name="text">
             <string>Paste</string>
@@ -373,15 +541,23 @@
           <widget class="QPushButton" name="weight_hammer_but">
            <property name="minimumSize">
             <size>
-             <width>0</width>
+             <width>50</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>90</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(170, 255, 255);
+	alternate-background-color: rgb(85, 170, 255);
+}
+</string>
            </property>
            <property name="text">
             <string>Weight Hammer</string>
@@ -391,13 +567,6 @@
         </layout>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="vertex_copy_buffer_lbl">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
      </widget>
     </item>
     <item>
@@ -432,6 +601,60 @@
      </widget>
     </item>
     <item>
+     <widget class="QGroupBox" name="skin_transfer_grp_box_2">
+      <property name="title">
+       <string>Prune Weight</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <layout class="QVBoxLayout" name="skin_transfer_layout_2">
+         <item>
+          <widget class="QLabel" name="skin_transfer_lbl_2">
+           <property name="text">
+            <string>Prune small weight by value</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QPushButton" name="skin_transfer_but_2">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(133, 133, 255);
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Prune</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox">
+             <property name="decimals">
+              <number>3</number>
+             </property>
+             <property name="minimum">
+              <double>0.010000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
      <widget class="QGroupBox" name="skin_transfer_grp_box">
       <property name="title">
        <string>Transfer Skin</string>
@@ -442,12 +665,19 @@
          <item>
           <widget class="QLabel" name="skin_transfer_lbl">
            <property name="text">
-            <string>Select the source and target mesh</string>
+            <string>Select the valid source skin object and target mesh</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="skin_transfer_but">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 149, 1);
+}
+</string>
+           </property>
            <property name="text">
             <string>Transfer</string>
            </property>
@@ -472,7 +702,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>340</width>
+     <width>358</width>
      <height>21</height>
     </rect>
    </property>
