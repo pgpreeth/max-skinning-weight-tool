@@ -6,7 +6,9 @@ Important: The controls on this dialog adjust vertex weighting with respect to t
 
 Your Tool will be activated only in vertex mode and on a valid skinned mesh..
 
-![GitHub Logo](/images/old_max_weight_tool.PNG) ![GitHub Logo](/images/max_weight_tool.PNG)
+![GitHub Logo](/images/old_max_weight_tool.PNG)        ![GitHub Logo](/images/max_weight_tool.PNG)
+
+
 
 
 # Features!
@@ -14,6 +16,11 @@ Your Tool will be activated only in vertex mode and on a valid skinned mesh..
   - Adjust weights to vertices using preset buttons on the UI like 3dsmax
   - Transfer skin from one valid skinned object to another.
   - This tool has been refactored to python from the original mel tool
+
+
+This is a video demo from the old mel tool. https://youtu.be/UBhhcFxvHTg?t=41
+
+[![Link to video](https://img.youtube.com/vi/UBhhcFxvHTg/0.jpg)](https://youtu.be/UBhhcFxvHTg?t=41)
 
 ## Installation
 
