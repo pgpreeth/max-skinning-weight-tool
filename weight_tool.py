@@ -3,12 +3,15 @@
 # This tool is released under the "MIT License Agreement". Please see the LICENSE
 # file that should have been included as part of this package.
 
-import pymel.core as pm
-import config
+import os
 import sys
 import logging
 
+import pymel.core as pm
+
 from core import ui_function, utilities
+import config
+
 reload(ui_function)
 reload(utilities)
 reload(config)
@@ -16,12 +19,10 @@ reload(config)
 # Qt modules
 try:
     from PySide2 import QtCore, QtGui
-    from PySide2.QtWidgets import QWidget, QMenu, QAction, \
-        QFileDialog, QInputDialog, QMessageBox, QVBoxLayout, QApplication, QListWidgetItem
+    from PySide2.QtWidgets import QWidget, QMessageBox, QVBoxLayout, QListWidgetItem
 except:
     from PySide import QtCore, QtGui
-    from PySide.QtGui import QWidget, QMenu, QAction, \
-        QFileDialog, QInputDialog, QMessageBox, QVBoxLayout, QApplication
+    from PySide.QtGui import QWidget, QMessageBox, QVBoxLayout, QListWidgetItem
 
 
 class MaxSkinningWeightTool(QWidget):
@@ -84,6 +85,13 @@ class MaxSkinningWeightTool(QWidget):
         self.tool_ui.skin_joints_list_widget.itemSelectionChanged.connect(
             self.skin_joint_list_selection_changed)
 
+        self.tool_ui.action_save_weight.triggered.connect(self.save_weight)
+        self.tool_ui.action_load_weight.triggered.connect(self.load_weight)
+        self.tool_ui.action_check_weight.triggered.connect(self.check_weight)
+
+        self.tool_ui.action_help.triggered.connect(self.help)
+        self.tool_ui.action_about.triggered.connect(self.about)
+
         self.update_joint_list_influence()
         self.activate_selection_callback()
 
@@ -111,7 +119,7 @@ class MaxSkinningWeightTool(QWidget):
         if callback_no:
             pm.scriptJob(kill=callback_no)
         callback_no = pm.scriptJob(parent='weight_tool_object', e=[
-                                   'SelectionChanged', self.update_joint_list_influence], protected=True)
+            'SelectionChanged', self.update_joint_list_influence], protected=True)
 
     def vertex_joint_list_selection_changed(self):
         """
@@ -138,7 +146,7 @@ class MaxSkinningWeightTool(QWidget):
                 self.tool_ui.vertex_joints_list_widget.setCurrentItem(
                     items_in_list[0])
 
-    def update_joint_list_influence(self):
+    def update_joint_list_influence(self, selected_joint=None):
         """
         updates the joint list widget with joints info on the selected skin cluster
         """
@@ -174,10 +182,14 @@ class MaxSkinningWeightTool(QWidget):
                     for joint in joint_list:
                         item = QListWidgetItem(str(joint))
                         self.tool_ui.vertex_joints_list_widget.addItem(item)
-                        # self.tool_ui.vertex_joints_list_widget.setCurrentItem(item)
                     for weight in weight_list:
                         item = QListWidgetItem(str(round(weight, 3)))
                         self.tool_ui.weight_info_list_widget.addItem(item)
+                if selected_joint is not None:
+                    items_in_list = self.tool_ui.vertex_joints_list_widget.findItems(
+                        selected_joint, QtCore.Qt.MatchExactly)
+                    self.tool_ui.vertex_joints_list_widget.setCurrentItem(
+                        items_in_list[0])
         else:
             self.tool_ui.centralwidget.setEnabled(False)
             self.tool_ui.weight_info_list_widget.clear()
@@ -201,7 +213,7 @@ class MaxSkinningWeightTool(QWidget):
                     for i in selected_object:
                         weight_list = utilities.set_weight(
                             skin_cluster=skin_cluster, vertices=i, joint=selected_joint, value=value)
-                        self.update_joint_list_influence()
+                        self.update_joint_list_influence(selected_joint)
 
         else:
             logging.info('Weight not set')
@@ -237,12 +249,14 @@ class MaxSkinningWeightTool(QWidget):
                     skin_cluster=skin_cluster, vertices=i)
                 joint_list = utilities.get_joints_inf_from_vertices(
                     skin_cluster=skin_cluster, vertices=i)
-                selected_joint = self.tool_ui.skin_joints_list_widget.selectedItems()[0].text()
+                selected_joint_index = self.tool_ui.skin_joints_list_widget.selectedItems()
+                if len(selected_joint_index):
+                    selected_joint = selected_joint_index[0].text()
 
-                for i, joint in enumerate(joint_list):
-                    if joint == selected_joint:
-                        get_weight = weight_list[i]
-                        return get_weight
+                    for i, joint in enumerate(joint_list):
+                        if joint == selected_joint:
+                            get_weight = weight_list[i]
+                            return get_weight
         return None
 
     def add_weight(self):
@@ -275,7 +289,7 @@ class MaxSkinningWeightTool(QWidget):
         existing_weight = self.get_weight_to_change()
         if existing_weight is not None:
             get_weight_value = self.tool_ui.scale_weight_val_spin_box.value()
-            weight = ((existing_weight * 5)/100) + get_weight_value
+            weight = ((existing_weight * 5) / 100) + get_weight_value
             self.apply_weight(weight)
 
     def scale_down_weight(self):
@@ -286,11 +300,10 @@ class MaxSkinningWeightTool(QWidget):
         existing_weight = self.get_weight_to_change()
         if existing_weight is not None:
             get_weight_value = self.tool_ui.scale_weight_val_spin_box.value()
-            weight = existing_weight - ((existing_weight * 5)/100)
+            weight = existing_weight - ((existing_weight * 5) / 100)
             self.apply_weight(weight)
 
-    @staticmethod
-    def copy_vertex_skin_weight():
+    def copy_vertex_skin_weight(self):
         """
         Copy vertex skin weight to the buffer
         """
@@ -298,8 +311,7 @@ class MaxSkinningWeightTool(QWidget):
         if utilities.is_selection_valid_skin_and_vertices():
             pm.mel.eval('artAttrSkinWeightCopy;')
 
-    @staticmethod
-    def paste_vertex_skin_weight():
+    def paste_vertex_skin_weight(self):
         """
         Paste vertex skin weight to the buffer
         """
@@ -307,8 +319,7 @@ class MaxSkinningWeightTool(QWidget):
             pm.mel.eval('artAttrSkinWeightPaste;')
             self.update_joint_list_influence()
 
-    @staticmethod
-    def weight_hammer():
+    def weight_hammer(self):
         """
         Weight hammer the selected vertices
         """
@@ -319,7 +330,7 @@ class MaxSkinningWeightTool(QWidget):
     @staticmethod
     def skin_transfer_func():
         """
-        Transfer skincluster from source to destination.
+        Transfer skin-cluster from source to destination.
         """
         transfer_success = utilities.skin_transfer()
         if transfer_success:
@@ -327,7 +338,6 @@ class MaxSkinningWeightTool(QWidget):
         else:
             logging.warning(
                 'Please select the valid skin Source and then the target to transfer the skin')
-
 
     def prune_weights(self):
         """
@@ -339,8 +349,54 @@ class MaxSkinningWeightTool(QWidget):
         if selected_object:
             mesh_object = pm.ls(selected_object[0], o=True)
             skin_cluster = utilities.find_skin_cluster(mesh_object[0])
-            pm.skinPercent( skin_cluster, mesh_object[0], pruneWeights=get_prune_value )
+            pm.skinPercent(
+                skin_cluster, mesh_object[0], pruneWeights=get_prune_value)
             self.update_joint_list_influence()
+
+    @staticmethod
+    def save_weight():
+        """
+        Function to save the skin weight
+        """
+
+        logging.warning('This feature is not available currently')
+
+    @staticmethod
+    def load_weight():
+        """
+        Function to load the skin weight
+        """
+
+        logging.warning('This feature is not available currently')
+
+    @staticmethod
+    def check_weight():
+        """
+        Function to check joint weight on vertex
+        """
+
+        logging.warning('This feature is not available currently')
+
+    @staticmethod
+    def help():
+        """
+        Function to load the help link
+        """
+
+        web_path = 'start {}'.format(config.HELP_PATH)
+        os.system(web_path)
+
+    def about(self):
+        """
+        Function 
+        """
+
+        about_box = QMessageBox()
+        about_text = "Skinning weight Tool like Max Weight tool"
+        about_text = "{} \nVersion : {}".format(about_text, config.VERSION)
+        about_box.about(self, 'Max Skinning Weight Tool', about_text)
+        about_box.setWindowIcon(QtGui.QIcon(config.ICON_PATH + '/icon.png'))
+
 
 def show():
     """

@@ -1,3 +1,8 @@
+# Copyright 2019 by Preeth PG, Technical Animator
+# All rights reserved.
+# This tool is released under the "MIT License Agreement". Please see the LICENSE
+# file that should have been included as part of this package.
+
 import pymel.core as pm
 from collections import namedtuple
 
@@ -39,7 +44,7 @@ def get_weights_inf_from_vertices(skin_cluster=None, joint=None, vertices=None):
     """
 
     if joint is None:
-        weight = pm.skinPercent(skin_cluster, vertices,ignoreBelow=0.0001, query=True, value=True)
+        weight = pm.skinPercent(skin_cluster, vertices, ignoreBelow=0.0001, query=True, value=True)
     else:
         weight = [pm.skinPercent(
             skin_cluster, vertices, transform=joint, ignoreBelow=0.0001, query=True, value=True)]

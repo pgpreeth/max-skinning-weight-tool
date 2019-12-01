@@ -691,7 +691,7 @@
     <item>
      <widget class="QLabel" name="about_lbl">
       <property name="text">
-       <string>@ pg.preeth@gmail.com</string>
+       <string>@ pg.preeth@gmail.com                             [www.pgpreeth.com]</string>
       </property>
      </widget>
     </item>
@@ -710,25 +710,44 @@
     <property name="title">
      <string>Utilities</string>
     </property>
+    <addaction name="action_save_weight"/>
+    <addaction name="action_load_weight"/>
+    <addaction name="separator"/>
+    <addaction name="action_check_weight"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionHelp"/>
-    <addaction name="actionAbout"/>
+    <addaction name="action_help"/>
+    <addaction name="action_about"/>
    </widget>
    <addaction name="menuUtilities"/>
    <addaction name="menuHelp"/>
   </widget>
-  <action name="actionAbout">
+  <action name="action_about">
    <property name="text">
     <string>About</string>
    </property>
   </action>
-  <action name="actionHelp">
+  <action name="action_help">
    <property name="text">
     <string>Help</string>
+   </property>
+  </action>
+  <action name="action_save_weight">
+   <property name="text">
+    <string>Save Weight</string>
+   </property>
+  </action>
+  <action name="action_load_weight">
+   <property name="text">
+    <string>Load Weight</string>
+   </property>
+  </action>
+  <action name="action_check_weight">
+   <property name="text">
+    <string>Check Weight Influence on Joints</string>
    </property>
   </action>
  </widget>

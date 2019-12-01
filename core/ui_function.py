@@ -1,8 +1,14 @@
+# Copyright 2019 by Preeth PG, Technical Animator
+# All rights reserved.
+# This tool is released under the "MIT License Agreement".
+# Please see the LICENSE file that should have been included as part of this package.
+
 try:
     from PySide2 import QtCore, QtWidgets, QtUiTools
     from shiboken2 import wrapInstance
 except:
     from PySide import QtCore, QtWidgets, QtUiTools
+    from shiboken import wrapInstance
 
 import maya.OpenMayaUI as omui
 import pymel.core as pm
@@ -40,5 +46,4 @@ def maya_workspace_docker(qt_widget, window_title):
     # wrap_widget.destroyed.connect(close)
     child = qt_widget(wrap_widget)
     wrap_widget.layout().addWidget(child)
-    pm.evalDeferred(
-        lambda *args: pm.workspaceControl(workspace_control, edit=True, restore=True))
+    pm.evalDeferred(lambda *args: pm.workspaceControl(workspace_control, edit=True, restore=True))
