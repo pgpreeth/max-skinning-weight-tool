@@ -13,7 +13,7 @@ Your Tool will be activated only in vertex mode and on a valid skinned mesh..
   - Transfer skin from one valid skinned object to another.
   - This tool has been refactored to python from the original mel tool
 
-### Installation
+## Installation
 
 The Skinning Tool has been tested for Maya 2016 and above
 
@@ -22,13 +22,37 @@ The Skinning Tool has been tested for Maya 2016 and above
 # Make sure to replace the correct path into the 'path' variable
 
 import sys
-path = 'PATH_TO_TOOL/max-skinning-weight-tool/' #eg 'd:/max-skinning-weight-tool/'
+path = 'PATH_TO_TOOL/max-skinning-weight-tool/' #eg path = 'd:/max-skinning-weight-tool/'
 sys.path.append(path)
 import weight_tool as wt
 wt.show()
 ```
+## File structure
+```
++ max-skinning-weight-tool/
+|           (The main folder with all the scripts)
++-- __init__.py
+|           
++-- weight_tool.py
+|           The QWidget class with start() function to load the tool in maya
++-- config.py
+|           Contains Tool name, version and paths
++-- core/
+|   +-- ui_function.py
+|           Contains QT functions for wrapping widget to maya and loading .ui file
+|   +-- utilities.py
+|           Contains functionality to get information required for the tool
+|   +-- __init__.py
+|           
++-- icons/ 
+|   +-- weight_tool.png
+|           icon for weight tool
++-- ui/
+|   +-- weight_tool.ui
+|           The main ui file done using Qt Designer and also has stylesheet applied
+```     
 
-### History
+## History
 
 This tool was originally developed by me way back in the late 2000 using MEL scripts and published on creativecrash (highend3d)
 
@@ -36,7 +60,7 @@ This tool was originally developed by me way back in the late 2000 using MEL scr
 | ------ | ------ |
 | MAX Skinning Weight Tool for maYa 1.1.0 | https://www.highend3d.com/maya/script/max-skinning-weight-tool-for-maya |
 
-### Todos
+## Todos
 
  - Add Load and Save skin feature.
 
