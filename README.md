@@ -24,7 +24,7 @@ This is a video demo from the old mel tool. https://youtu.be/UBhhcFxvHTg?t=41
 
 ## Installation
 
-The Skinning Tool has been tested for Maya 2016 and above
+The Skinning Tool has been tested for Maya 2017 and above
 
 ```sh
 # Copy the below script into your maya shelf through the script editor
