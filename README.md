@@ -1,4 +1,4 @@
-# Max Skinning Weight Tool ![GitHub Logo](/icons/weight_tool.png)
+# Max Skinning Weight Tool for Maya![GitHub Logo](/icons/weight_tool.png)
 
 This is a python tool similar to the weight tool in 3DSMAX. A model can be skinned using this script without using the maya paint tool. This script provides tools to select vertices and assign them weights. You can also copy, paste, and blend weights between vertices. Each vertex you select displays the objects contributing to its weighting in the dialog list.
 
