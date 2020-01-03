@@ -120,3 +120,11 @@ def skin_transfer():
                                surfaceAssociation='closestPoint', influenceAssociation='closestJoint')
             return True
     return False
+
+
+def get_directory():
+    directory_path = str(
+        QFileDialog.getExistingDirectory(self, "Select Directory", options=QFileDialog.ShowDirsOnly, dir='c:/'))
+    if directory_path is not "":
+        return directory_path
+    return None

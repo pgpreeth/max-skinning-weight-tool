@@ -6,6 +6,7 @@
 import os
 import sys
 import logging
+import json
 
 import pymel.core as pm
 
@@ -19,10 +20,10 @@ reload(config)
 # Qt modules
 try:
     from PySide2 import QtCore, QtGui
-    from PySide2.QtWidgets import QWidget, QMessageBox, QVBoxLayout, QListWidgetItem
+    from PySide2.QtWidgets import QWidget, QMessageBox, QVBoxLayout, QListWidgetItem, QFileDialog
 except:
     from PySide import QtCore, QtGui
-    from PySide.QtGui import QWidget, QMessageBox, QVBoxLayout, QListWidgetItem
+    from PySide.QtGui import QWidget, QMessageBox, QVBoxLayout, QListWidgetItem, QFileDialog
 
 
 class MaxSkinningWeightTool(QWidget):
@@ -165,7 +166,6 @@ class MaxSkinningWeightTool(QWidget):
                     self.tool_ui.skin_joints_list_widget.addItem(item)
 
             if utilities.is_valid_selection():
-                mesh_object = pm.ls(selected_object[0], o=True)
                 for i in selected_object:
                     joint_list = list()
                     weight_list = list()
@@ -174,8 +174,10 @@ class MaxSkinningWeightTool(QWidget):
                             skin_cluster=skin_cluster, vertices=i)
                         joint_list = utilities.get_joints_inf_from_vertices(
                             skin_cluster=skin_cluster, vertices=i)
+
                     except:
                         pass
+
                     self.tool_ui.vertex_joints_list_widget.clear()
                     self.tool_ui.weight_info_list_widget.clear()
 
@@ -353,21 +355,109 @@ class MaxSkinningWeightTool(QWidget):
                 skin_cluster, mesh_object[0], pruneWeights=get_prune_value)
             self.update_joint_list_influence()
 
-    @staticmethod
-    def save_weight():
+    def save_weight(self):
         """
-        Function to save the skin weight
-        """
-
-        logging.warning('This feature is not available currently')
-
-    @staticmethod
-    def load_weight():
-        """
-        Function to load the skin weight
+        Function to save the skin weight of the selected mesh
         """
 
-        logging.warning('This feature is not available currently')
+        directory_path = self.get_directory()
+        if directory_path is None:
+            return
+
+        selected_objects = pm.ls(sl=True)
+        for i in selected_objects:
+            vertex = dict()
+
+            skin_cluster = utilities.find_skin_cluster(i)
+            if skin_cluster is not None:
+                pm.select(i)
+                no_of_vertices = pm.polyEvaluate(v=True)
+                shape_node = i.getShape()
+                g_main_progress_bar = pm.mel.eval('$tmp = $gMainProgressBar');
+                pm.progressBar(g_main_progress_bar,
+                               edit=True,
+                               beginProgress=True,
+                               isInterruptable=True,
+                               status='"Getting skin info ...',
+                               maxValue=no_of_vertices)
+                for vertex_no in range(0, no_of_vertices):
+                    vertex_skin_info = dict()
+                    if pm.progressBar(g_main_progress_bar, query=True, isCancelled=True):
+                        break
+                    vertices_selection = '{}.vtx[{}]'.format(shape_node, str(vertex_no))
+                    joint_list = list()
+                    weight_list = list()
+                    weight_list = utilities.get_weights_inf_from_vertices(skin_cluster=skin_cluster,
+                                                                          vertices=vertices_selection)
+                    joint_list = utilities.get_joints_inf_from_vertices(skin_cluster=skin_cluster,
+                                                                        vertices=vertices_selection)
+                    vertex_skin_info['joint_list'] = joint_list
+                    vertex_skin_info['weight_list'] = weight_list
+                    vertex[vertices_selection] = vertex_skin_info
+                    pm.progressBar(g_main_progress_bar, edit=True, step=1)
+
+                pm.progressBar(g_main_progress_bar, edit=True, endProgress=True)
+            path = '{}/{}.skindata'.format(directory_path, i.name())
+            with open(path, mode='w') as f:
+                f.write(json.dumps(vertex, indent=4, separators=(',', ': ')))
+                logging.info('{} skin saved'.format(i.name()))
+
+    def load_weight(self):
+        """
+        Function to load the skin weight on the selected mesh
+        the function looks for a file in the selected directoy of the same name as mesh and loads the skin
+        """
+
+        directory_path = self.get_directory()
+        if directory_path is None:
+            return
+
+        selected_objects = pm.ls(sl=True)
+        for i in selected_objects:
+            skin_cluster = utilities.find_skin_cluster(i)
+            if skin_cluster is not None:
+
+                path = '{}/{}.skindata'.format(directory_path, i.name())
+                if not os.path.isfile(path):
+                    logging.warning('Skin data file doesnot exist of the name {}.skindata'.format(i.name()))
+                    return
+
+                with open(path) as fileJson:
+                    try:
+                        loaded_dict_from_file = json.load(fileJson)
+                    except:
+                        logging.warning('Corrupt skin data. {}'.format(path))
+                        return
+                g_main_progress_bar = pm.mel.eval('$tmp = $gMainProgressBar');
+                pm.progressBar(g_main_progress_bar,
+                               edit=True,
+                               beginProgress=True,
+                               isInterruptable=True,
+                               status='"loading skin info ...',
+                               maxValue=len(loaded_dict_from_file))
+                for vertex, skin_info in loaded_dict_from_file.iteritems():
+                    for counter, joint in enumerate(skin_info['joint_list']):
+                        try:
+                            utilities.set_weight(skin_cluster=skin_cluster, vertices=vertex, joint=joint,
+                                                 value=skin_info['weight_list'][counter])
+                            pm.progressBar(g_main_progress_bar, edit=True, step=1)
+                        except:
+                            logging.warning('Skin data not matching the selected mesh. {}'.format(i.name()))
+                            return
+                pm.progressBar(g_main_progress_bar, edit=True, endProgress=True)
+
+                logging.info('{} skin data loaded on {} sucessfully'.format(path, i.name()))
+
+    def get_directory(self):
+        """
+        Opens a file dialog to choose a directory
+        """
+
+        directory_path = str(
+            QFileDialog.getExistingDirectory(self, "Select Directory", options=QFileDialog.ShowDirsOnly, dir='c:/'))
+        if directory_path is not "":
+            return directory_path
+        return None
 
     @staticmethod
     def check_weight():

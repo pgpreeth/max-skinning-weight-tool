@@ -16,7 +16,7 @@ Your Tool will be activated only in vertex mode and on a valid skinned mesh..
   - Adjust weights to vertices using preset buttons on the UI like 3dsmax
   - Transfer skin from one valid skinned object to another.
   - This tool has been refactored to python from the original mel tool
-
+  - Load and Save skin data on selected mesh
 
 This is a video demo from the old mel tool. https://youtu.be/UBhhcFxvHTg?t=41
 
@@ -68,13 +68,15 @@ wt.show()
 
 This tool was originally developed by me way back in the late 2000 using MEL scripts and published on creativecrash (highend3d)
 
+04.01.2020 - Added Load and Save skin weight feature on selected mesh from/to a specified directory
+
 | Tool | Link |
 | ------ | ------ |
 | MAX Skinning Weight Tool for maYa 1.1.0 | https://www.highend3d.com/maya/script/max-skinning-weight-tool-for-maya |
 
 ## Todos
 
- - Add Load and Save skin feature.
+ - Check skin influence and change max skin vertex weight info
 
 License
 ----
