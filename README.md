@@ -6,9 +6,7 @@ Important: The controls on this dialog adjust vertex weighting with respect to t
 
 Your Tool will be activated only in vertex mode and on a valid skinned mesh..
 
-![GitHub Logo](/images/old_max_weight_tool.PNG)        ![GitHub Logo](/images/max_weight_tool.PNG)
-
-
+![GitHub Logo](/images/max_weight_tool.PNG)
 
 
 # Features!
