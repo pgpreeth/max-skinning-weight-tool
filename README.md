@@ -65,7 +65,9 @@ wt.show()
 ## History
 
 This tool was originally developed by me way back in the late 2000 using MEL scripts and published on creativecrash (highend3d)
+
 ![GitHub Logo](/images/old_max_weight_tool.PNG) 
+
 04.01.2020 - Added Load and Save skin weight feature on selected mesh from/to a specified directory
 
 | Tool | Link |
