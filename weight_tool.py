@@ -12,10 +12,12 @@ import pymel.core as pm
 
 from core import ui_function, utilities
 import config
+import py_utils
 
-reload(ui_function)
-reload(utilities)
-reload(config)
+py_utils.reload_module(ui_function)
+py_utils.reload_module(utilities)
+py_utils.reload_module(config)
+
 
 # Qt modules
 try:
